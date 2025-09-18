@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7890314542345467" crossorigin="anonymous"></script>
+
+    <title>Matrix Digital Rain - English Hacker Terminal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            cursor: crosshair;
+            height: 100vh;
+            position: relative;
+        }
+
+        .matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .matrix-char {
+            position: absolute;
+            font-weight: bold;
+            text-shadow: 0 0 10px currentColor;
+            animation: fall linear infinite;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .matrix-char:hover {
+            transform: scale(1.8);
+            text-shadow: 0 0 25px currentColor;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-150px);
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .hacker-text {
+            position: absolute;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 0 15px currentColor;
+            animation: float linear infinite;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .hacker-text:hover {
+            transform: scale(1.3);
+            text-shadow: 0 0 30px currentColor;
+        }
+
+        .hacker-text.small {
+            font-size: 12px;
+        }
+
+        .hacker-text.large {
+            font-size: 20px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateX(-300px) translateY(0px);
+                opacity: 0;
+            }
+            8% {
+                opacity: 1;
+            }
+            92% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 300px)) translateY(-80px);
+                opacity: 0;
+            }
+        }
+
+        .vertical-text {
+            position: absolute;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 0 12px currentColor;
+            animation: verticalFloat linear infinite;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+        }
+
+        @keyframes verticalFloat {
+            0% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .diagonal-text {
+            position: absolute;
+            font-size: 15px;
+            font-weight: bold;
+            text-shadow: 0 0 12px currentColor;
+            animation: diagonalFloat linear infinite;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            transform-origin: center;
+        }
+
+        @keyframes diagonalFloat {
+            0% {
+                transform: translateX(-200px) translateY(100vh) rotate(-45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(-200px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        .color-theme-1 { color: #00ff00; }
+        .color-theme-2 { color: #00ffff; }
+        .color-theme-3 { color: #ff0080; }
+        .color-theme-4 { color: #ffff00; }
+        .color-theme-5 { color: #ff4500; }
+        .color-theme-6 { color: #9932cc; }
+        .color-theme-7 { color: #00ff80; }
+        .color-theme-8 { color: #ff6600; }
+        .color-theme-9 { color: #ff1493; }
+        .color-theme-10 { color: #00bfff; }
+
+        .title {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ff00;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0 0 25px #00ff00;
+            z-index: 10;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ff00;
+            font-size: 16px;
+            text-shadow: 0 0 15px #00ff00;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .status-bar {
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            color: #00ff00;
+            font-size: 12px;
+            text-shadow: 0 0 10px #00ff00;
+            z-index: 10;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">CYBER MATRIX TERMINAL</div>
+    <div class="status-bar" id="statusBar">
+        STATUS: ONLINE<br>
+        SECURITY: BYPASSED<br>
+        CONNECTION: ENCRYPTED
+    </div>
+    <div class="instructions">CLICK ANYWHERE TO CYCLE COLORS • SPACE TO RANDOMIZE</div>
+    <div class="matrix-container" id="matrixContainer"></div>
+
+    <script>
+        // 확장된 색상 테마
+        const colorThemes = [
+            '#00ff00', // Classic Matrix Green
+            '#00ffff', // Cyber Cyan
+            '#ff0080', // Neon Pink
+            '#ffff00', // Electric Yellow
+            '#ff4500', // Orange Red
+            '#9932cc', // Dark Orchid
+            '#00ff80', // Spring Green
+            '#ff6600', // Dark Orange
+            '#ff1493', // Deep Pink
+            '#00bfff'  // Deep Sky Blue
+        ];
+
+        let currentThemeIndex = 0;
+
+        // 확장된 매트릭스 문자 세트
+        const matrixChars = [
+            // 숫자
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            // 대문자
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+            'U', 'V', 'W', 'X', 'Y', 'Z',
+            // 특수 문자
+            '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+            '-', '_', '=', '+', '[', ']', '{', '}', '|', '\\',
+            ':', ';', '"', "'", '<', '>', ',', '.', '?', '/',
+            '~', '`', '№', '§', '±', '∞', '∑', '∆', '∏', '∫',
+            '√', '≈', '≠', '≤', '≥', '÷', '×', '∂', '∇', '∴',
+            // 바이너리
+            '01', '10', '11', '00',
+            // 헥스
+            'A0', 'B1', 'C2', 'D3', 'E4', 'F5', 'FF', '00'
+        ];
+
+        // 대량의 영어 해커 관련 텍스트
+        const hackerTexts = [
+            // 시스템 메시지
+            'ACCESSING MAINFRAME DATABASE...',
+            'BYPASSING FIREWALL SECURITY...',
+            'DECRYPTING ENCRYPTED FILES...',
+            'NEURAL NETWORK ACTIVATED',
+            'QUANTUM ENCRYPTION PROTOCOL',
+            'CYBER SECURITY BREACH DETECTED',
+            'MATRIX PROTOCOL INITIATED',
+            'DIGITAL FORTRESS BREACHED',
+            'SYSTEM INFILTRATION COMPLETE',
+            'CODE INJECTION SUCCESSFUL',
+            'ROOT ACCESS GRANTED',
+            'ADMINISTRATOR PRIVILEGES ACQUIRED',
+            'FIREWALL PENETRATION COMPLETE',
+            'DATA MINING IN PROGRESS...',
+            'GHOST IN THE SHELL PROTOCOL',
+            'CYBER WARFARE MODE ACTIVE',
+            'VIRTUAL REALITY BREACH',
+            'AI CONSCIOUSNESS UPLOADED',
+            'DIGITAL DNA SEQUENCE DECODED',
+            'QUANTUM BIT MANIPULATION',
+            'CYBER PUNK PROTOCOL ENGAGED',
+
+            // 해킹 명령어
+            'nmap -sS -O target.com',
+            'sqlmap -u "http://target.com"',
+            'john --wordlist=rockyou.txt hash.txt',
+            'hashcat -m 0 -a 0 hash.txt wordlist.txt',
+            'msfconsole',
+            'exploit/multi/handler',
+            'set payload windows/meterpreter/reverse_tcp',
+            'use auxiliary/scanner/smb/smb_version',
+            'sudo aircrack-ng -w wordlist.txt capture.cap',
+            'hydra -l admin -P passwords.txt ssh://target.com',
+            'nikto -h http://target.com',
+            'dirb http://target.com /usr/share/dirb/wordlists/',
+            'gobuster dir -u http://target.com -w /path/to/wordlist',
+            'wpscan --url http://target.com --enumerate u',
+
+            // 네트워크 및 시스템
+            'NETWORK INTRUSION DETECTED',
+            'PACKET SNIFFING INITIATED',
+            'TCP/IP STACK OVERFLOW',
+            'BUFFER OVERFLOW EXPLOIT',
+            'PRIVILEGE ESCALATION ATTEMPT',
+            'REVERSE SHELL ESTABLISHED',
+            'BACKDOOR INSTALLATION COMPLETE',
+            'KEYLOGGER DEPLOYMENT SUCCESSFUL',
+            'CRYPTOGRAPHIC HASH CRACKED',
+            'STEGANOGRAPHY ANALYSIS',
+            'DIGITAL FORENSICS MODE',
+            'MEMORY DUMP EXTRACTION',
+            'REGISTRY MANIPULATION',
+            'DLL INJECTION TECHNIQUE',
+            'ZERO-DAY EXPLOIT ACTIVATED',
+
+            // 고급 해킹 용어
+            'ADVANCED PERSISTENT THREAT',
+            'LATERAL MOVEMENT INITIATED',
+            'COMMAND AND CONTROL SERVER',
+            'EXFILTRATION PROTOCOL ACTIVE',
+            'SOCIAL ENGINEERING VECTOR',
+            'PHISHING CAMPAIGN DEPLOYED',
+            'SPEAR PHISHING TARGET ACQUIRED',
+            'WATERING HOLE ATTACK',
+            'MAN-IN-THE-MIDDLE INTERCEPTION',
+            'DNS SPOOFING ATTACK',
+            'ARP POISONING TECHNIQUE',
+            'SESSION HIJACKING COMPLETE',
+            'CROSS-SITE SCRIPTING PAYLOAD',
+            'SQL INJECTION VULNERABILITY',
+            'REMOTE CODE EXECUTION',
+
+            // 암호화 및 보안
+            'RSA ENCRYPTION ALGORITHM',
+            'AES-256 CIPHER BROKEN',
+            'ELLIPTIC CURVE CRYPTOGRAPHY',
+            'DIGITAL SIGNATURE FORGED',
+            'CERTIFICATE AUTHORITY COMPROMISED',
+            'PUBLIC KEY INFRASTRUCTURE',
+            'BLOCKCHAIN CONSENSUS ATTACK',
+            'SMART CONTRACT VULNERABILITY',
+            'CRYPTOCURRENCY WALLET BREACH',
+            'DIGITAL IDENTITY THEFT',
+
+            // AI 및 머신러닝
+            'MACHINE LEARNING MODEL POISONED',
+            'ADVERSARIAL NEURAL NETWORK',
+            'DEEPFAKE GENERATION ACTIVE',
+            'ARTIFICIAL INTELLIGENCE BACKDOOR',
+            'COMPUTER VISION EVASION',
+            'NATURAL LANGUAGE PROCESSING',
+            'REINFORCEMENT LEARNING AGENT',
+            'GENERATIVE ADVERSARIAL NETWORK',
+            'CONVOLUTIONAL NEURAL NETWORK',
+            'RECURRENT NEURAL NETWORK',
+
+            // 운영체제 및 시스템
+            'KERNEL ROOTKIT INSTALLATION',
+            'BOOTKIT PERSISTENCE MECHANISM',
+            'HYPERVISOR ESCAPE TECHNIQUE',
+            'VIRTUAL MACHINE DETECTION',
+            'SANDBOX EVASION SUCCESSFUL',
+            'ANTI-VIRUS SIGNATURE BYPASS',
+            'ENDPOINT DETECTION DISABLED',
+            'BEHAVIORAL ANALYSIS CIRCUMVENTED',
+            'PROCESS HOLLOWING TECHNIQUE',
+            'CODE CAVE INJECTION',
+
+            // 모바일 및 IoT
+            'MOBILE DEVICE EXPLOITATION',
+            'ANDROID APK REVERSE ENGINEERING',
+            'iOS JAILBREAK TECHNIQUE',
+            'IoT DEVICE BOTNET RECRUITMENT',
+            'SMART HOME VULNERABILITY',
+            'INDUSTRIAL CONTROL SYSTEM HACK',
+            'SCADA SYSTEM MANIPULATION',
+            'FIRMWARE MODIFICATION',
+            'HARDWARE IMPLANT DETECTION',
+            'SIDE-CHANNEL ATTACK VECTOR',
+
+            // 클라우드 및 웹
+            'CLOUD INFRASTRUCTURE BREACH',
+            'CONTAINER ESCAPE TECHNIQUE',
+            'KUBERNETES CLUSTER COMPROMISE',
+            'SERVERLESS FUNCTION INJECTION',
+            'API SECURITY VULNERABILITY',
+            'OAUTH TOKEN HIJACKING',
+            'JWT TOKEN MANIPULATION',
+            'CORS MISCONFIGURATION EXPLOIT',
+            'CLICKJACKING ATTACK VECTOR',
+            'CONTENT SECURITY POLICY BYPASS',
+
+            // 단축 상태 메시지
+            'BREACH SUCCESSFUL',
+            'ACCESS DENIED',
+            'DECRYPTION FAILED',
+            'CONNECTION TIMEOUT',
+            'PAYLOAD DELIVERED',
+            'SHELL SPAWNED',
+            'PERSISTENCE ACHIEVED',
+            'STEALTH MODE ACTIVE',
+            'EXFILTRATION COMPLETE',
+            'MISSION ACCOMPLISHED',
+            'TARGET COMPROMISED',
+            'VULNERABILITY DISCOVERED',
+            'EXPLOIT DEPLOYED',
+            'BACKDOOR ACTIVE',
+            'NETWORK MAPPED',
+            'CREDENTIALS HARVESTED',
+            'DATABASE DUMPED',
+            'SYSTEM PWNED',
+            'GAME OVER',
+            'WELCOME TO THE MATRIX'
+        ];
+
+        // 상태 바 업데이트를 위한 상태 메시지
+        const statusMessages = [
+            'STATUS: INFILTRATING...',
+            'STATUS: BYPASSING SECURITY...',
+            'STATUS: DECRYPTING DATA...',
+            'STATUS: ACCESSING MAINFRAME...',
+            'STATUS: BREACH SUCCESSFUL',
+            'STATUS: DEEP WEB ACCESS',
+            'STATUS: NEURAL LINK ACTIVE',
+            'STATUS: QUANTUM TUNNEL OPEN'
+        ];
+
+        // 매트릭스 문자 생성 (더 높은 빈도)
+        function createMatrixChar() {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            char.style.left = Math.random() * 100 + 'vw';
+            char.style.fontSize = (Math.random() * 25 + 10) + 'px';
+            char.style.animationDuration = (Math.random() * 4 + 1.5) + 's';
+            char.style.color = colorThemes[currentThemeIndex];
+
+            char.addEventListener('click', changeColorTheme);
+            return char;
+        }
+
+        // 해커 텍스트 생성 (다양한 크기)
+        function createHackerText() {
+            const text = document.createElement('div');
+            const sizes = ['small', '', 'large'];
+            const sizeClass = sizes[Math.floor(Math.random() * sizes.length)];
+
+            text.className = 'hacker-text ' + sizeClass;
+            text.textContent = hackerTexts[Math.floor(Math.random() * hackerTexts.length)];
+            text.style.top = Math.random() * 85 + 5 + 'vh';
+            text.style.animationDuration = (Math.random() * 6 + 7) + 's';
+            text.style.color = colorThemes[currentThemeIndex];
+
+            text.addEventListener('click', changeColorTheme);
+            return text;
+        }
+
+        // 세로 텍스트 생성
+        function createVerticalText() {
+            const text = document.createElement('div');
+            text.className = 'vertical-text';
+            text.textContent = hackerTexts[Math.floor(Math.random() * hackerTexts.length)];
+            text.style.left = Math.random() * 90 + 5 + 'vw';
+            text.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            text.style.color = colorThemes[currentThemeIndex];
+
+            text.addEventListener('click', changeColorTheme);
+            return text;
+        }
+
+        // 대각선 텍스트 생성
+        function createDiagonalText() {
+            const text = document.createElement('div');
+            text.className = 'diagonal-text';
+            text.textContent = hackerTexts[Math.floor(Math.random() * hackerTexts.length)];
+            text.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            text.style.color = colorThemes[currentThemeIndex];
+
+            text.addEventListener('click', changeColorTheme);
+            return text;
+        }
+
+        // 색상 테마 변경
+        function changeColorTheme() {
+            currentThemeIndex = (currentThemeIndex + 1) % colorThemes.length;
+            updateAllColors();
+        }
+
+        // 랜덤 색상 테마
+        function randomColorTheme() {
+            currentThemeIndex = Math.floor(Math.random() * colorThemes.length);
+            updateAllColors();
+        }
+
+        // 모든 요소 색상 업데이트
+        function updateAllColors() {
+            const allElements = document.querySelectorAll('.matrix-char, .hacker-text, .vertical-text, .diagonal-text, .title, .instructions, .status-bar');
+            allElements.forEach(element => {
+                element.style.color = colorThemes[currentThemeIndex];
+                const shadowSize = element.classList.contains('title') ? '25px' :
+                                 element.classList.contains('hacker-text') || element.classList.contains('vertical-text') || element.classList.contains('diagonal-text') ? '15px' :
+                                 element.classList.contains('instructions') ? '15px' :
+                                 element.classList.contains('status-bar') ? '10px' : '10px';
+                element.style.textShadow = `0 0 ${shadowSize} ${colorThemes[currentThemeIndex]}`;
+            });
+        }
+
+        // 상태 바 업데이트
+        function updateStatusBar() {
+            const statusBar = document.getElementById('statusBar');
+            const randomStatus = statusMessages[Math.floor(Math.random() * statusMessages.length)];
+            const connectionTypes = ['ENCRYPTED', 'TUNNELED', 'PROXIED', 'ANONYMOUS', 'SECURED'];
+            const securityStates = ['BYPASSED', 'BREACHED', 'COMPROMISED', 'OVERRIDDEN', 'DISABLED'];
+
+            statusBar.innerHTML = `
+                ${randomStatus}<br>
+                SECURITY: ${securityStates[Math.floor(Math.random() * securityStates.length)]}<br>
+                CONNECTION: ${connectionTypes[Math.floor(Math.random() * connectionTypes.length)]}
+            `;
+        }
+
+        // 애니메이션 시작 함수들
+        function startMatrixRain() {
+            const container = document.getElementById('matrixContainer');
+
+            setInterval(() => {
+                const char = createMatrixChar();
+                container.appendChild(char);
+
+                setTimeout(() => {
+                    if (char.parentNode) {
+                        char.parentNode.removeChild(char);
+                    }
+                }, 6000);
+            }, 30); // 더 빠른 생성
+        }
+
+        function startHackerTexts() {
+            const container = document.getElementById('matrixContainer');
+
+            setInterval(() => {
+                const text = createHackerText();
+                container.appendChild(text);
+
+                setTimeout(() => {
+                    if (text.parentNode) {
+                        text.parentNode.removeChild(text);
+                    }
+                }, 15000);
+            }, 800); // 더 빈번한 생성
+        }
+
+        function startVerticalTexts() {
+            const container = document.getElementById('matrixContainer');
+
+            setInterval(() => {
+                const text = createVerticalText();
+                container.appendChild(text);
+
+                setTimeout(() => {
+                    if (text.parentNode) {
+                        text.parentNode.removeChild(text);
+                    }
+                }, 16000);
+            }, 2500);
+        }
+
+        function startDiagonalTexts() {
+            const container = document.getElementById('matrixContainer');
+
+            setInterval(() => {
+                const text = createDiagonalText();
+                container.appendChild(text);
+
+                setTimeout(() => {
+                    if (text.parentNode) {
+                        text.parentNode.removeChild(text);
+                    }
+                }, 20000);
+            }, 4000);
+        }
+
+        // 초기화
+        function init() {
+            startMatrixRain();
+            startHackerTexts();
+            startVerticalTexts();
+            startDiagonalTexts();
+
+            // 상태 바 업데이트
+            setInterval(updateStatusBar, 3000);
+
+            // 이벤트 리스너
+            document.addEventListener('click', changeColorTheme);
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    randomColorTheme();
+                }
+            });
+            document.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                changeColorTheme();
+            });
+        }
+
+        // 페이지 로드 시 시작
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
